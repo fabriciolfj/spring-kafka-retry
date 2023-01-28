@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: person-service
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    producer:
+      transaction-id-prefix: tx-
+      properties:
+        enable.idempotence: true
+        transactional.id: tran-id-1
+      retries: 3
+    consumer:
+      group-id: group-1
+      isolation-level: read_committed
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+
+topic:
+  person: person-topic
